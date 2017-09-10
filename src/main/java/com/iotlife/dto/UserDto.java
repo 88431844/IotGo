@@ -1,4 +1,4 @@
-package com.iotlife.iotlife.dto;
+package com.iotlife.dto;
 
 public class UserDto {
     private String userLoginName;

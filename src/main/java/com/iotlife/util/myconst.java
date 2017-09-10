@@ -1,4 +1,4 @@
-package com.iotlife.iotlife.util;
+package com.iotlife.util;
 
 public class myconst {
     public static final int SUCCESS = 1111;

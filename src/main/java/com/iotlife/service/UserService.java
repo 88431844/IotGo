@@ -1,4 +1,4 @@
-package com.iotlife.iotlife.service;
+package com.iotlife.service;
 
 import org.springframework.stereotype.Service;
 

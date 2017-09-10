@@ -1,4 +1,4 @@
-package com.iotlife.iotlife;
+package com.iotlife;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
