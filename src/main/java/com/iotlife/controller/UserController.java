@@ -2,6 +2,8 @@ package com.iotlife.controller;
 
 import com.iotlife.dto.CommonDto;
 import com.iotlife.dto.UserDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/addUser")
     @ResponseBody
