@@ -8,13 +8,11 @@
             <arg column="devType" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="devDes" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="devTopic" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="
-belongUser" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="belongUser" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
-    id, devName, devType, devDes, devTopic, 
-belongUser
+        id, devName, devType, devDes, devTopic, belongUser
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -27,13 +25,11 @@ belongUser
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.iotlife.entity.Dev">
-    insert into dev (id, devName, devType, 
-      devDes, devTopic, 
-belongUser
+    insert into dev (id, devName, devType,
+        devDes, devTopic, belongUser
       )
-    values (#{id,jdbcType=INTEGER}, #{devname,jdbcType=VARCHAR}, #{devtype,jdbcType=INTEGER}, 
-      #{devdes,jdbcType=VARCHAR}, #{devtopic,jdbcType=VARCHAR}, #{
-belonguser,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{devname,jdbcType=VARCHAR}, #{devtype,jdbcType=INTEGER},
+        #{devdes,jdbcType=VARCHAR}, #{devtopic,jdbcType=VARCHAR}, #{belonguser,jdbcType=INTEGER}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.iotlife.entity.Dev">
@@ -54,9 +50,7 @@ belonguser,jdbcType=INTEGER}
             <if test="devtopic != null">
                 devTopic,
             </if>
-            <if test="
-belonguser != null">
-
+            <if test="belonguser != null">
                 belongUser,
             </if>
         </trim>
@@ -76,10 +70,8 @@ belonguser != null">
             <if test="devtopic != null">
                 #{devtopic,jdbcType=VARCHAR},
             </if>
-            <if test="
-belonguser != null">
-                #{
-        belonguser,jdbcType=INTEGER},
+            <if test="belonguser != null">
+                #{belonguser,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -98,11 +90,8 @@ belonguser != null">
             <if test="devtopic != null">
                 devTopic = #{devtopic,jdbcType=VARCHAR},
             </if>
-            <if test="
-belonguser != null">
-
-                belongUser = #{
-belonguser,jdbcType=INTEGER},
+            <if test="belonguser != null">
+                belongUser = #{belonguser,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -113,9 +102,7 @@ belonguser,jdbcType=INTEGER},
       devType = #{devtype,jdbcType=INTEGER},
       devDes = #{devdes,jdbcType=VARCHAR},
       devTopic = #{devtopic,jdbcType=VARCHAR},
-      
-belongUser = #{
-belonguser,jdbcType=INTEGER}
+        belongUser = #{belonguser,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
