@@ -1,5 +1,6 @@
 package com.iotlife.dao;
 
+import com.iotlife.dto.UserDto;
 import com.iotlife.entity.User;
 
 public interface UserMapper {
@@ -14,4 +15,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    UserDto selectByLoginNameAndPass(UserDto userDto);
 }
