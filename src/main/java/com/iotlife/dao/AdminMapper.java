@@ -1,5 +1,6 @@
 package com.iotlife.dao;
 
+import com.iotlife.dto.AdminDto;
 import com.iotlife.entity.Admin;
 
 public interface AdminMapper {
@@ -14,4 +15,6 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    AdminDto selectByLoginNameAndPass(AdminDto adminDto);
 }
