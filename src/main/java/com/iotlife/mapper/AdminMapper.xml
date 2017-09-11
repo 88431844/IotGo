@@ -81,4 +81,13 @@
       adminName = #{adminname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <!--管理员登录查询-->
+    <select id="selectByLoginNameAndPass" parameterType="com.iotlife.dto.AdminDto" resultMap="BaseResultMap">
+        select
+        *
+        from admin
+        where
+        adminLoginName = #{adminLoginName} AND
+        adminPassword = #{adminPassword}
+    </select>
 </mapper>

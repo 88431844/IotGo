@@ -105,4 +105,15 @@
       userDes = #{userdes,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+    <!--用户登录查询-->
+    <select id="selectByLoginNameAndPass" parameterType="com.iotlife.dto.UserDto" resultMap="BaseResultMap">
+        select
+        *
+        from user
+        where
+        userLoginName = #{userLoginName} AND
+        userPassword = #{userPassword}
+    </select>
 </mapper>
