@@ -1,8 +1,9 @@
 package com.iotlife.dto;
 
-public class CommonDto {
+public class CommonDto<T> {
     private String code;
     private String msg;
+    private T data;
 
     public void CommonDto(String code, String msg) {
         this.code = code;
@@ -23,5 +24,13 @@ public class CommonDto {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }
