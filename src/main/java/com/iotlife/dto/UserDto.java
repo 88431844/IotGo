@@ -1,7 +1,17 @@
 package com.iotlife.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+
 public class UserDto {
+
+    private String id;
+    @NotNull(message = "用户账号不能为null")
+    @NotBlank(message = "用户员账号不能为空白")
     private String userLoginName;
+    @NotNull(message = "用户密码不能为null")
+    @NotBlank(message = "用户密码不能为空白")
     private String userPassword;
     private String userName;
     private String userTel;
@@ -10,12 +20,21 @@ public class UserDto {
     @Override
     public String toString() {
         return "UserDto{" +
-                "userLoginName='" + userLoginName + '\'' +
+                "id='" + id + '\'' +
+                ", userLoginName='" + userLoginName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userTel='" + userTel + '\'' +
                 ", userDes='" + userDes + '\'' +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserLoginName() {
