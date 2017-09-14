@@ -11,7 +11,7 @@ public class DevDto {
 
     private String devtopic;
 
-    private Integer belonguser;
+    private String userId;
 
     @Override
     public String toString() {
@@ -21,8 +21,16 @@ public class DevDto {
                 ", devtype=" + devtype +
                 ", devdes='" + devdes + '\'' +
                 ", devtopic='" + devtopic + '\'' +
-                ", belonguser=" + belonguser +
+                ", userId='" + userId + '\'' +
                 '}';
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -65,11 +73,4 @@ public class DevDto {
         this.devtopic = devtopic;
     }
 
-    public Integer getBelonguser() {
-        return belonguser;
-    }
-
-    public void setBelonguser(Integer belonguser) {
-        this.belonguser = belonguser;
-    }
 }
