@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50130
 File Encoding         : 65001
 
-Date: 2017-09-10 18:16:32
+Date: 2017-09-14 23:08:40
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -30,29 +30,19 @@ CREATE TABLE `admin` (
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
--- Records of admin
--- ----------------------------
-
--- ----------------------------
 -- Table structure for dev
 -- ----------------------------
 DROP TABLE IF EXISTS `dev`;
 CREATE TABLE `dev` (
-  `id`         INT(11) NOT NULL AUTO_INCREMENT,
-  `devName`    VARCHAR(255)     DEFAULT NULL,
-  `devType`    INT(255)         DEFAULT NULL,
-  `devDes`     VARCHAR(255)     DEFAULT NULL,
-  `devTopic`   VARCHAR(255)     DEFAULT NULL,
-  `belongUser` INT(255)         DEFAULT NULL,
-  PRIMARY KEY (`id`
-  )
+  `id`       INT(11) NOT NULL AUTO_INCREMENT,
+  `devName`  VARCHAR(255)     DEFAULT NULL,
+  `devType`  INT(255)         DEFAULT NULL,
+  `devDes`   VARCHAR(255)     DEFAULT NULL,
+  `devTopic` VARCHAR(255)     DEFAULT NULL,
+  PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
-
--- ----------------------------
--- Records of dev
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for devtype
@@ -65,10 +55,6 @@ CREATE TABLE `devtype` (
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
-
--- ----------------------------
--- Records of devtype
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -87,10 +73,6 @@ CREATE TABLE `user` (
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
--- Records of user
--- ----------------------------
-
--- ----------------------------
 -- Table structure for userdevrelation
 -- ----------------------------
 DROP TABLE IF EXISTS `userdevrelation`;
@@ -102,7 +84,3 @@ CREATE TABLE `userdevrelation` (
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
-
--- ----------------------------
--- Records of userdevrelation
--- ----------------------------

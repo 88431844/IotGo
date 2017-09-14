@@ -11,15 +11,12 @@ public class Dev {
 
     private String devtopic;
 
-    private Integer belonguser;
-
-    public Dev(Integer id, String devname, Integer devtype, String devdes, String devtopic, Integer belonguser) {
+    public Dev(Integer id, String devname, Integer devtype, String devdes, String devtopic) {
         this.id = id;
         this.devname = devname;
         this.devtype = devtype;
         this.devdes = devdes;
         this.devtopic = devtopic;
-        this.belonguser = belonguser;
     }
 
     public Dev() {
@@ -64,13 +61,5 @@ public class Dev {
 
     public void setDevtopic(String devtopic) {
         this.devtopic = devtopic == null ? null : devtopic.trim();
-    }
-
-    public Integer getBelonguser() {
-        return belonguser;
-    }
-
-    public void setBelonguser(Integer belonguser) {
-        this.belonguser = belonguser;
     }
 }
