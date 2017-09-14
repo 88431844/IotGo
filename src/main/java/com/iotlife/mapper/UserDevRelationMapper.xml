@@ -70,4 +70,11 @@
       devId = #{devid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <!--删除用户下的某个设备-->
+    <delete id="delByUserIdAndDevId" parameterType="com.iotlife.entity.UserDevRelation">
+        delete from userdevrelation
+        where userId = #{userid}
+        and devId = #{devid}
+    </delete>
 </mapper>

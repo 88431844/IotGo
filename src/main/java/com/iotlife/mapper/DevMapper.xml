@@ -92,4 +92,15 @@
         devTopic = #{devtopic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <!--通过用户id查询设备列表-->
+    <select id="selectDevByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        *
+        from
+        dev d,
+        userdevrelation ud
+        where ud.userId = d.id
+        and ud.userId = #{userId}
+    </select>
 </mapper>
