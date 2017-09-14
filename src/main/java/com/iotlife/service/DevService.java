@@ -27,7 +27,6 @@ public class DevService {
         dev.setDevtype(devDto.getDevtype());
         dev.setDevdes(devDto.getDevdes());
         dev.setDevtopic(devDto.getDevtopic());
-        dev.setBelonguser(devDto.getBelonguser());
         devMapper.insertSelective(dev);
     }
 }
