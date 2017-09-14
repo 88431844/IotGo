@@ -14,4 +14,11 @@ public interface UserDevRelationMapper {
     int updateByPrimaryKeySelective(UserDevRelation record);
 
     int updateByPrimaryKey(UserDevRelation record);
+
+    /**
+     * 通过用户id和设备id删除用户绑定设备关系
+     *
+     * @param userDevRelation
+     */
+    void delByUserIdAndDevId(UserDevRelation userDevRelation);
 }
