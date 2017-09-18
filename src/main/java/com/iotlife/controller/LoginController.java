@@ -1,7 +1,7 @@
 package com.iotlife.controller;
 
 import com.iotlife.dto.AdminDto;
-import com.iotlife.dto.CommonDto;
+import com.iotlife.dto.CommonResponseDto;
 import com.iotlife.dto.UserDto;
 import com.iotlife.service.LoginService;
 import com.iotlife.util.myconst;
@@ -30,20 +30,20 @@ public class LoginController {
      */
     @RequestMapping("/adminLogin")
     @ResponseBody
-    public CommonDto adminLogin(@RequestBody @Validated AdminDto adminDto) {
-        CommonDto commonDto = new CommonDto();
+    public CommonResponseDto adminLogin(@RequestBody @Validated AdminDto adminDto) {
+        CommonResponseDto CommonResponseDto = new CommonResponseDto();
         AdminDto data = loginService.adminLogin(adminDto);
 
         if (null != data && null != data.getId()) {
             //如果查询出来结果不等于null，并且id不为null，则说明登录成功
-            commonDto.setCode(myconst.SUCCESS);
-            commonDto.setMsg(myconst.LOGIN_SUCCESS);
-            commonDto.setData(data);
+            CommonResponseDto.setCode(myconst.SUCCESS);
+            CommonResponseDto.setMsg(myconst.LOGIN_SUCCESS);
+            CommonResponseDto.setData(data);
         } else {
-            commonDto.setCode(myconst.FAIL);
-            commonDto.setMsg(myconst.LOGIN_FAIL);
+            CommonResponseDto.setCode(myconst.FAIL);
+            CommonResponseDto.setMsg(myconst.LOGIN_FAIL);
         }
-        return commonDto;
+        return CommonResponseDto;
     }
 
     /**
@@ -53,20 +53,20 @@ public class LoginController {
      */
     @RequestMapping("/userLogin")
     @ResponseBody
-    public CommonDto userLogin(@RequestBody @Validated UserDto userDto) {
-        CommonDto commonDto = new CommonDto();
+    public CommonResponseDto userLogin(@RequestBody @Validated UserDto userDto) {
+        CommonResponseDto CommonResponseDto = new CommonResponseDto();
         UserDto data = loginService.userLogin(userDto);
 
         if (null != data && null != data.getId()) {
             //如果查询出来结果不等于null，并且id不为null，则说明登录成功
-            commonDto.setCode(myconst.SUCCESS);
-            commonDto.setMsg(myconst.LOGIN_SUCCESS);
-            commonDto.setData(data);
+            CommonResponseDto.setCode(myconst.SUCCESS);
+            CommonResponseDto.setMsg(myconst.LOGIN_SUCCESS);
+            CommonResponseDto.setData(data);
         } else {
-            commonDto.setCode(myconst.FAIL);
-            commonDto.setMsg(myconst.LOGIN_FAIL);
+            CommonResponseDto.setCode(myconst.FAIL);
+            CommonResponseDto.setMsg(myconst.LOGIN_FAIL);
         }
-        return commonDto;
+        return CommonResponseDto;
     }
 
 }

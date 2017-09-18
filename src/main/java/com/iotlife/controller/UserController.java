@@ -1,6 +1,6 @@
 package com.iotlife.controller;
 
-import com.iotlife.dto.CommonDto;
+import com.iotlife.dto.CommonResponseDto;
 import com.iotlife.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,22 +23,22 @@ public class UserController {
 
     @RequestMapping("/addUser")
     @ResponseBody
-    public CommonDto addUser(@RequestBody @Validated UserDto userDto) {
-        CommonDto dto = new CommonDto();
+    public CommonResponseDto addUser(@RequestBody @Validated UserDto userDto) {
+        CommonResponseDto dto = new CommonResponseDto();
         return dto;
     }
 
     @RequestMapping("/delUser")
     @ResponseBody
-    public CommonDto delUser(@RequestBody @Validated UserDto userDto) {
-        CommonDto dto = new CommonDto();
+    public CommonResponseDto delUser(@RequestBody @Validated UserDto userDto) {
+        CommonResponseDto dto = new CommonResponseDto();
         return dto;
     }
 
     @RequestMapping("/updateUser")
     @ResponseBody
-    public CommonDto updateUser(@RequestBody @Validated UserDto userDto) {
-        CommonDto dto = new CommonDto();
+    public CommonResponseDto updateUser(@RequestBody @Validated UserDto userDto) {
+        CommonResponseDto dto = new CommonResponseDto();
         return dto;
     }
 

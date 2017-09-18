@@ -1,11 +1,11 @@
 package com.iotlife.dto;
 
-public class CommonDto<T> {
+public class CommonResponseDto<T> {
     private String code;
     private String msg;
     private T data;
 
-    public void CommonDto(String code, String msg) {
+    public void CommonResponseDto(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
