@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50130
 File Encoding         : 65001
 
-Date: 2017-09-14 23:08:40
+Date: 2017-09-27 23:40:27
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -30,6 +30,10 @@ CREATE TABLE `admin` (
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
+-- Records of admin
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for dev
 -- ----------------------------
 DROP TABLE IF EXISTS `dev`;
@@ -42,7 +46,14 @@ CREATE TABLE `dev` (
   PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
+  AUTO_INCREMENT = 3
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Records of dev
+-- ----------------------------
+INSERT INTO `dev` VALUES ('1', '室外传感器', '1', '在室外的传感器', '/room/senser/01');
+INSERT INTO `dev` VALUES ('2', '门窗传感器', '2', '门窗打开关闭传感器', '/room/senser/02');
 
 -- ----------------------------
 -- Table structure for devtype
@@ -54,7 +65,14 @@ CREATE TABLE `devtype` (
   PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
+  AUTO_INCREMENT = 3
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Records of devtype
+-- ----------------------------
+INSERT INTO `devtype` VALUES ('1', '温度传感器');
+INSERT INTO `devtype` VALUES ('2', '开关传感器');
 
 -- ----------------------------
 -- Table structure for user
@@ -70,7 +88,13 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
+  AUTO_INCREMENT = 2
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', 'user1', '1', '用户1', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for userdevrelation
@@ -84,3 +108,9 @@ CREATE TABLE `userdevrelation` (
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Records of userdevrelation
+-- ----------------------------
+INSERT INTO `userdevrelation` VALUES ('1', '1', '1');
+INSERT INTO `userdevrelation` VALUES ('2', '1', '2');
