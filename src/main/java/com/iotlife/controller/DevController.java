@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
+/**
+ * 设备controller
+ */
 @RestController
 public class DevController {
 
@@ -26,21 +28,23 @@ public class DevController {
 
     /**
      * 添加设备
+     *
      * @param devDto
      * @return
      */
     @RequestMapping("/addDev")
     @ResponseBody
     public CommonResponseDto addDev(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
+        CommonResponseDto ret = new CommonResponseDto();
         try {
             devService.addDev(devDto);
-            CommonResponseDto.setCode(myconst.SUCCESS);
+            ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
             logger.error("DevController addDev error");
-            CommonResponseDto.setCode(myconst.FAIL);
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
-        return CommonResponseDto;
+        return ret;
     }
 
     /**
@@ -52,17 +56,24 @@ public class DevController {
     @RequestMapping("/delDev")
     @ResponseBody
     public CommonResponseDto delDev(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
-        int delStatus = 0;
+        CommonResponseDto ret = new CommonResponseDto();
         try {
-            delStatus = devService.delDev(devDto);
-            //TODO 判断delStatus状态 并且把状态加入到myconst静态变量中
-            CommonResponseDto.setCode(myconst.SUCCESS);
+            int delStatus = devService.delDev(devDto);
+            /**
+             * 0 删除成功
+             * 1 有用户绑定关系
+             */
+            if (0 == delStatus) {
+                ret.setCode(myconst.SUCCESS);
+            } else if (1 == delStatus) {
+                ret.setCode(myconst.DEV_HAVE_Bind_CODE);
+            }
         } catch (Exception e) {
             logger.error("DevController delDev error");
-            CommonResponseDto.setCode(myconst.FAIL);
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
-        return CommonResponseDto;
+        return ret;
     }
 
     /**
@@ -74,15 +85,16 @@ public class DevController {
     @RequestMapping("/updateDev")
     @ResponseBody
     public CommonResponseDto updateDev(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
+        CommonResponseDto ret = new CommonResponseDto();
         try {
             devService.updateDev(devDto);
-            CommonResponseDto.setCode(myconst.SUCCESS);
+            ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
             logger.error("DevController updateDev error");
-            CommonResponseDto.setCode(myconst.FAIL);
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
-        return CommonResponseDto;
+        return ret;
     }
 
     /**
@@ -94,20 +106,16 @@ public class DevController {
     @RequestMapping("/selectDevById")
     @ResponseBody
     public CommonResponseDto selectDevById(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
-        DevDto ret = null;
+        CommonResponseDto ret = new CommonResponseDto();
         try {
-            ret = devService.selectById(devDto);
-            if (null == ret) {//如果查询出来结果为null则返回响应code码
-                CommonResponseDto.setCode(myconst.NULL_RESULT);
-            } else {
-                CommonResponseDto.setCode(myconst.SUCCESS);
-            }
+            ret.setData(devService.selectById(devDto));
+            ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
             logger.error("DevController selectDevById error");
-            CommonResponseDto.setCode(myconst.FAIL);
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
-        return CommonResponseDto;
+        return ret;
     }
 
     /**
@@ -119,26 +127,27 @@ public class DevController {
     @RequestMapping("/selectDevByUserId")
     @ResponseBody
     public CommonResponseDto selectDevByUserId(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
+        CommonResponseDto ret = new CommonResponseDto();
         List<DevDto> dList = null;
         try {
             dList = devService.selectDevByUserId(devDto);
             if (null != dList) {
                 if (dList.size() > 0) {
-                    CommonResponseDto.setData(dList);
-                    CommonResponseDto.setCode(myconst.SUCCESS);
+                    ret.setData(dList);
+                    ret.setCode(myconst.SUCCESS);
                 } else {
-                    CommonResponseDto.setCode(myconst.EMPTY_LIST);
+                    ret.setCode(myconst.EMPTY_LIST);
                 }
             } else {
-                CommonResponseDto.setCode(myconst.FAIL);
+                ret.setCode(myconst.FAIL);
             }
         } catch (Exception e) {
-            logger.error("DevController selectDevByUserId error:{}", e);
-            CommonResponseDto.setCode(myconst.FAIL);
+            logger.error("DevController selectDevByUserId error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
 
-        return CommonResponseDto;
+        return ret;
     }
 
     /**
@@ -147,19 +156,19 @@ public class DevController {
      * @param devDto
      * @return
      */
-    @RequestMapping("/bingDevToUser")
+    @RequestMapping("/bindDevToUser")
     @ResponseBody
-    public CommonResponseDto bingDevToUser(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
-
+    public CommonResponseDto bindDevToUser(@RequestBody @Validated DevDto devDto) {
+        CommonResponseDto ret = new CommonResponseDto();
         try {
-            devService.bingDevToUser(devDto);
-            CommonResponseDto.setCode(myconst.SUCCESS);
+            devService.bindDevToUser(devDto);
+            ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController bingDevToUser error:{}", e);
-            CommonResponseDto.setCode(myconst.FAIL);
+            logger.error("DevController bindDevToUser error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
-        return CommonResponseDto;
+        return ret;
     }
 
     /**
@@ -168,17 +177,40 @@ public class DevController {
      * @param devDto
      * @return
      */
-    @RequestMapping("/unBingDevToUser")
+    @RequestMapping("/unBindDevToUser")
     @ResponseBody
-    public CommonResponseDto unBingDevToUser(@RequestBody @Validated DevDto devDto) {
-        CommonResponseDto CommonResponseDto = new CommonResponseDto();
+    public CommonResponseDto unBindDevToUser(@RequestBody @Validated DevDto devDto) {
+        CommonResponseDto ret = new CommonResponseDto();
         try {
-            devService.unBingDevToUser(devDto);
-            CommonResponseDto.setCode(myconst.SUCCESS);
+            devService.unBindDevToUser(devDto);
+            ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController unBingDevToUser error:{}", e);
-            CommonResponseDto.setCode(myconst.FAIL);
+            logger.error("DevController unBindDevToUser error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
         }
-        return CommonResponseDto;
+        return ret;
     }
+
+    /**
+     * 解绑用户所有设备
+     *
+     * @param devDto
+     * @return
+     */
+    @RequestMapping("/unBindUserAllDev")
+    @ResponseBody
+    public CommonResponseDto unBindUserAllDev(@RequestBody @Validated DevDto devDto) {
+        CommonResponseDto ret = new CommonResponseDto();
+        try {
+            devService.unBindUserAllDev(devDto);
+            ret.setCode(myconst.SUCCESS);
+        } catch (Exception e) {
+            logger.error("DevController unBindUserAllDev error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 }
