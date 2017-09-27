@@ -22,7 +22,8 @@ public class DevService {
     private DevMapper devMapper;
     @Autowired
     private UserDevRelationMapper userDevRelationMapper;
-
+    @Autowired
+    private DevService devService;
     /**
      * 添加设备
      *
@@ -45,14 +46,14 @@ public class DevService {
         /**
          * 0 删除成功
          * 1 有用户绑定关系
-         * 2 删除绑定关系失败
-         * 3 珊瑚设备信息失败
          */
-        int ret = 0;
-        //TODO 先看看该设备是否已经被用户绑定，如果已经被绑定提示先解绑再删除，
-        //TODO 如果没有，则关联userdevrelation表进行删除
+        //判断该设备是否已经被用户绑定，如果已经被绑定提示先解绑再删除
+        List<DevDto> dList = devService.selectDevByUserId(devDto);
+        if (null != dList && dList.size() > 0) {
+            return 1;
+        }
         devMapper.deleteByPrimaryKey(devDto.getId());
-        return ret;
+        return 0;
     }
 
     /**
@@ -73,12 +74,8 @@ public class DevService {
      * @param devDto
      * @return
      */
-    public DevDto selectById(DevDto devDto) {
-        Dev dev = new Dev();
-        DevDto dto = new DevDto();
-        dev = devMapper.selectByPrimaryKey(devDto.getId());
-        BeanUtils.copyProperties(dev, dto);
-        return dto;
+    public DevDto selectById(DevDto devDto) throws Exception {
+        return devMapper.selectDevDtoByPrimaryKey(devDto.getId());
     }
 
     /**
@@ -96,7 +93,7 @@ public class DevService {
      *
      * @param devDto
      */
-    public void bingDevToUser(DevDto devDto) throws Exception {
+    public void bindDevToUser(DevDto devDto) throws Exception {
         UserDevRelation userDevRelation = new UserDevRelation();
         userDevRelation.setUserid(Integer.parseInt(devDto.getUserId()));
         userDevRelation.setDevid(devDto.getId());
@@ -108,10 +105,19 @@ public class DevService {
      *
      * @param devDto
      */
-    public void unBingDevToUser(DevDto devDto) throws Exception {
+    public void unBindDevToUser(DevDto devDto) throws Exception {
         UserDevRelation userDevRelation = new UserDevRelation();
         userDevRelation.setUserid(Integer.parseInt(devDto.getUserId()));
         userDevRelation.setDevid(devDto.getId());
         userDevRelationMapper.delByUserIdAndDevId(userDevRelation);
+    }
+
+    /**
+     * 解绑用户所有设备
+     *
+     * @param devDto
+     */
+    public void unBindUserAllDev(DevDto devDto) throws Exception {
+        userDevRelationMapper.unBindUserAllDev(devDto.getUserId());
     }
 }
