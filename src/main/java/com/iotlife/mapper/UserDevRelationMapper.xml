@@ -71,10 +71,16 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <!--删除用户下的某个设备-->
+    <!--删除用户下的某个设备（解绑用户设备）-->
     <delete id="delByUserIdAndDevId" parameterType="com.iotlife.entity.UserDevRelation">
         delete from userdevrelation
         where userId = #{userid}
         and devId = #{devid}
+    </delete>
+
+    <!--解绑用户所有设备-->
+    <delete id="unBindUserAllDev" parameterType="com.java.lang.String">
+        delete from userdevrelation
+        where userId = #{userid}
     </delete>
 </mapper>

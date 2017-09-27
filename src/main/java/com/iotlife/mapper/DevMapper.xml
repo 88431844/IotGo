@@ -94,13 +94,41 @@
   </update>
 
     <!--通过用户id查询设备列表-->
-    <select id="selectDevByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectDevByUserId" resultType="com.iotlife.dto.DevDto" parameterType="java.lang.String">
+        SELECT
+        d.id as id,
+        d.devName as devName,
+        d.devType as devType,
+        dt.devtypename as devTypeName,
+        d.devDes as devDes,
+        d.devTopic as devTopic,
+        u.id as userId
+        FROM
+        dev d,
+        userdevrelation ud,
+        devtype dt,
+        user u
+        WHERE
+        d.id = ud.devId
+        AND dt.id = d.devtype
+        AND ud.userId = #{userId}
+    </select>
+
+
+    <!--通过设备id查询devDto-->
+    <select id="selectDevDtoByPrimaryKey" resultType="com.iotlife.dto.DevDto" parameterType="java.lang.Integer">
         select
-        *
+        d.id,
+        d.devName,
+        d.devType,
+        t.devTypeName
+        d.devDes,
+        d.devTopic,
+        d.userId
         from
         dev d,
-        userdevrelation ud
-        where ud.userId = d.id
-        and ud.userId = #{userId}
+        devtype t
+        where d.devType = t.id
+        and d.id = #{devId}
     </select>
 </mapper>
