@@ -3,13 +3,15 @@ package com.iotlife.dto;
 public class DevDto {
     private Integer id;
 
-    private String devname;
+    private String devName;
 
-    private Integer devtype;
+    private Integer devType;
 
-    private String devdes;
+    private String devTypeName;
 
-    private String devtopic;
+    private String devDes;
+
+    private String devTopic;
 
     private String userId;
 
@@ -17,20 +19,13 @@ public class DevDto {
     public String toString() {
         return "DevDto{" +
                 "id=" + id +
-                ", devname='" + devname + '\'' +
-                ", devtype=" + devtype +
-                ", devdes='" + devdes + '\'' +
-                ", devtopic='" + devtopic + '\'' +
+                ", devName='" + devName + '\'' +
+                ", devType=" + devType +
+                ", devTypeName='" + devTypeName + '\'' +
+                ", devDes='" + devDes + '\'' +
+                ", devTopic='" + devTopic + '\'' +
                 ", userId='" + userId + '\'' +
                 '}';
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public Integer getId() {
@@ -41,36 +36,51 @@ public class DevDto {
         this.id = id;
     }
 
-    public String getDevname() {
-        return devname;
+    public String getDevName() {
+        return devName;
     }
 
-    public void setDevname(String devname) {
-        this.devname = devname;
+    public void setDevName(String devName) {
+        this.devName = devName;
     }
 
-    public Integer getDevtype() {
-        return devtype;
+    public Integer getDevType() {
+        return devType;
     }
 
-    public void setDevtype(Integer devtype) {
-        this.devtype = devtype;
+    public void setDevType(Integer devType) {
+        this.devType = devType;
     }
 
-    public String getDevdes() {
-        return devdes;
+    public String getDevTypeName() {
+        return devTypeName;
     }
 
-    public void setDevdes(String devdes) {
-        this.devdes = devdes;
+    public void setDevTypeName(String devTypeName) {
+        this.devTypeName = devTypeName;
     }
 
-    public String getDevtopic() {
-        return devtopic;
+    public String getDevDes() {
+        return devDes;
     }
 
-    public void setDevtopic(String devtopic) {
-        this.devtopic = devtopic;
+    public void setDevDes(String devDes) {
+        this.devDes = devDes;
     }
 
+    public String getDevTopic() {
+        return devTopic;
+    }
+
+    public void setDevTopic(String devTopic) {
+        this.devTopic = devTopic;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }
