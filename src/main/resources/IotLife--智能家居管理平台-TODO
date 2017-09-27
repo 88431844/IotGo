@@ -1,0 +1,5 @@
+1.完成目前controller中代码中设计的相关实现
+
+2.选择前端框架
+
+3.增加设备在线状态MySQL表 基本字段 id,devId,devStatus,可能后续会存入redis中
