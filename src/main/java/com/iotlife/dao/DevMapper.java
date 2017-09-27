@@ -25,4 +25,12 @@ public interface DevMapper {
      * @return
      */
     List<DevDto> selectDevByUserId(String userId);
+
+    /**
+     * 通过设备id查询devDto
+     *
+     * @param devId
+     * @return
+     */
+    DevDto selectDevDtoByPrimaryKey(Integer devId);
 }
