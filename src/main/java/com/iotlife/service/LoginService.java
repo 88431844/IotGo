@@ -25,10 +25,8 @@ public class LoginService {
      * @param adminDto
      * @return
      */
-    public AdminDto adminLogin(AdminDto adminDto) {
-        AdminDto data = null;
-        data = adminMapper.selectByLoginNameAndPass(adminDto);
-        return data;
+    public AdminDto adminLogin(AdminDto adminDto) throws Exception {
+        return adminMapper.selectByLoginNameAndPass(adminDto);
     }
 
     /**
@@ -37,9 +35,7 @@ public class LoginService {
      * @param userDto
      * @return
      */
-    public UserDto userLogin(UserDto userDto) {
-        UserDto data = null;
-        data = userMapper.selectByLoginNameAndPass(userDto);
-        return data;
+    public UserDto userLogin(UserDto userDto) throws Exception {
+        return userMapper.selectByLoginNameAndPass(userDto);
     }
 }
