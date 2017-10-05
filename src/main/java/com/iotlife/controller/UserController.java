@@ -111,16 +111,25 @@ public class UserController {
     /**
      * 查询所有用户列表
      *
-     * @param userDto
      * @return
      */
     @RequestMapping("/selectAllUser")
     @ResponseBody
-    public CommonResponseDto selectAllUser(@RequestBody @Validated UserDto userDto) {
+    public CommonResponseDto selectAllUser() {
         CommonResponseDto ret = new CommonResponseDto();
         List<UserDto> uList = new ArrayList<>();
-        //TODO 从Service层查询
-        ret.setData(uList);
+        try {
+            uList = userService.selectAllUser();
+            if (null != uList && uList.size() > 0) {
+                ret.setData(uList);
+            } else {
+                ret.setCode(myconst.EMPTY_LIST);
+            }
+        } catch (Exception e) {
+            logger.error("UserController selectAllUser error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
+        }
         return ret;
     }
 
