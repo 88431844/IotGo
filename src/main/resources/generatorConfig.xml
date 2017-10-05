@@ -55,7 +55,7 @@
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="dev" domainObjectName="Dev"
+        <table tableName="devstatus" domainObjectName="DevStatus"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

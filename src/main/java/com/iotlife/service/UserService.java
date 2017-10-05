@@ -9,6 +9,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -63,6 +66,19 @@ public class UserService {
         User user = userMapper.selectByPrimaryKey(Integer.parseInt(userDto.getId()));
         BeanUtils.copyProperties(user, dto);
         return dto;
+    }
+
+    /**
+     * 查询所有用户信息
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<UserDto> selectAllUser() throws Exception {
+        List<UserDto> uList = new ArrayList<>();
+        uList = userMapper.selectAllUser();
+        return uList;
+
     }
 
 }

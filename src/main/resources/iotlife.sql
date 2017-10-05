@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50130
 File Encoding         : 65001
 
-Date: 2017-09-27 23:40:27
+Date: 2017-10-05 14:35:13
 */
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -54,6 +54,25 @@ CREATE TABLE `dev` (
 -- ----------------------------
 INSERT INTO `dev` VALUES ('1', '室外传感器', '1', '在室外的传感器', '/room/senser/01');
 INSERT INTO `dev` VALUES ('2', '门窗传感器', '2', '门窗打开关闭传感器', '/room/senser/02');
+
+-- ----------------------------
+-- Table structure for devstatus
+-- ----------------------------
+DROP TABLE IF EXISTS `devstatus`;
+CREATE TABLE `devstatus` (
+  `id`        INT(11) NOT NULL,
+  `devId`     INT(11) DEFAULT NULL,
+  `devStatus` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+-- ----------------------------
+-- Records of devstatus
+-- ----------------------------
+INSERT INTO `devstatus` VALUES ('1', '1', '1');
+INSERT INTO `devstatus` VALUES ('2', '2', '0');
 
 -- ----------------------------
 -- Table structure for devtype
