@@ -116,4 +116,11 @@
         userLoginName = #{userLoginName} AND
         userPassword = #{userPassword}
     </select>
+
+    <!--查询所有用户-->
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        select
+        *
+        from user
+    </select>
 </mapper>
