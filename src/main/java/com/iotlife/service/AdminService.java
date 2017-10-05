@@ -2,9 +2,10 @@ package com.iotlife.service;
 
 import com.iotlife.dao.AdminMapper;
 import com.iotlife.dto.AdminDto;
-import com.iotlife.dto.CommonResponseDto;
+import com.iotlife.entity.Admin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,15 @@ public class AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
-    public CommonResponseDto updateAdmin(AdminDto adminDto) throws Exception {
-        CommonResponseDto ret = new CommonResponseDto();
-        return ret;
+    /**
+     * 更新管理员信息
+     *
+     * @param adminDto
+     * @throws Exception
+     */
+    public void updateAdmin(AdminDto adminDto) throws Exception {
+        Admin admin = new Admin();
+        BeanUtils.copyProperties(adminDto, admin);
+        adminMapper.updateByPrimaryKey(admin);
     }
 }
