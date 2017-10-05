@@ -14,6 +14,13 @@ public class DevDto {
     private String devTopic;
 
     private String userId;
+    /**
+     * 0 下线
+     * 1 上线
+     * 2 未知
+     * 默认0
+     */
+    private Integer devStatus;
 
     @Override
     public String toString() {
@@ -25,7 +32,16 @@ public class DevDto {
                 ", devDes='" + devDes + '\'' +
                 ", devTopic='" + devTopic + '\'' +
                 ", userId='" + userId + '\'' +
+                ", devStatus=" + devStatus +
                 '}';
+    }
+
+    public Integer getDevStatus() {
+        return devStatus;
+    }
+
+    public void setDevStatus(Integer devStatus) {
+        this.devStatus = devStatus;
     }
 
     public Integer getId() {
