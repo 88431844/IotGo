@@ -4,12 +4,14 @@ import com.iotlife.dao.DevMapper;
 import com.iotlife.dao.UserDevRelationMapper;
 import com.iotlife.dto.DevDto;
 import com.iotlife.entity.Dev;
+import com.iotlife.entity.DevStatus;
 import com.iotlife.entity.UserDevRelation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,16 +26,30 @@ public class DevService {
     private UserDevRelationMapper userDevRelationMapper;
     @Autowired
     private DevService devService;
+    @Autowired
+    private DevStatusService devStatusService;
     /**
      * 添加设备
      *
      * @param devDto
      * @throws Exception
      */
+    @Transactional
     public void addDev(DevDto devDto) throws Exception {
         Dev dev = new Dev();
         BeanUtils.copyProperties(devDto, dev);
         devMapper.insertSelective(dev);
+        //对应生成该设备的状态表信息
+        DevStatus devStatus = new DevStatus();
+        devStatus.setDevid(dev.getId());
+        /**
+         * 0 下线
+         * 1 上线
+         * 2 未知
+         * 默认0
+         */
+        devStatus.setDevstatus(0);//默认置为0
+        devStatusService.addDevStatus(devStatus);
     }
 
     /**
@@ -42,6 +58,7 @@ public class DevService {
      * @param devDto
      * @throws Exception
      */
+    @Transactional
     public int delDev(DevDto devDto) throws Exception {
         /**
          * 0 删除成功
@@ -53,6 +70,8 @@ public class DevService {
             return 1;
         }
         devMapper.deleteByPrimaryKey(devDto.getId());
+        //删除对应设备的状态表
+        devStatusService.delDevStatusByDevId(devDto.getId());
         return 0;
     }
 
