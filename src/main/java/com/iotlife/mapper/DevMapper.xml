@@ -29,7 +29,7 @@
         values (#{id,jdbcType=INTEGER}, #{devname,jdbcType=VARCHAR}, #{devtype,jdbcType=INTEGER},
         #{devdes,jdbcType=VARCHAR}, #{devtopic,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.iotlife.entity.Dev">
+    <insert id="insertSelective" keyProperty="id" parameterType="com.iotlife.entity.Dev">
         insert into dev
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -96,39 +96,49 @@
     <!--通过用户id查询设备列表-->
     <select id="selectDevByUserId" resultType="com.iotlife.dto.DevDto" parameterType="java.lang.String">
         SELECT
-        d.id as id,
-        d.devName as devName,
-        d.devType as devType,
-        dt.devtypename as devTypeName,
-        d.devDes as devDes,
-        d.devTopic as devTopic,
-        u.id as userId
+        d.id AS id,
+        d.devName AS devName,
+        d.devType AS devType,
+        t.devtypename AS devTypeName,
+        d.devDes AS devDes,
+        d.devTopic AS devTopic,
+        u.id AS userId,
+        ds.devstatus AS devStatus
         FROM
         dev d,
         userdevrelation ud,
-        devtype dt,
-        user u
+        devtype t,
+        USER u,
+        devstatus ds
         WHERE
         d.id = ud.devId
-        AND dt.id = d.devtype
+        AND t.id = d.devtype
+        AND ds.devId = d.id
         AND ud.userId = #{userId}
     </select>
 
 
     <!--通过设备id查询devDto-->
     <select id="selectDevDtoByPrimaryKey" resultType="com.iotlife.dto.DevDto" parameterType="java.lang.Integer">
-        select
-        d.id,
-        d.devName,
-        d.devType,
-        t.devTypeName
-        d.devDes,
-        d.devTopic,
-        d.userId
-        from
+        SELECT
+        d.id AS id,
+        d.devName AS devName,
+        d.devType AS devType,
+        t.devtypename AS devTypeName,
+        d.devDes AS devDes,
+        d.devTopic AS devTopic,
+        u.id AS userId,
+        ds.devstatus AS devStatus
+        FROM
         dev d,
-        devtype t
-        where d.devType = t.id
-        and d.id = #{devId}
+        devtype t,
+        USER u,
+        userdevrelation ud,
+        devstatus ds
+        WHERE
+        d.devType = t.id
+        AND ud.devid = d.id
+        AND ds.devId = d.id
+        AND d.id = #{devId}
     </select>
 </mapper>
