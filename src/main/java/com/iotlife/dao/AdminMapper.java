@@ -16,5 +16,11 @@ public interface AdminMapper {
 
     int updateByPrimaryKey(Admin record);
 
+    /**
+     * 通过账号密码查询管理员信息
+     *
+     * @param adminDto
+     * @return
+     */
     AdminDto selectByLoginNameAndPass(AdminDto adminDto);
 }
