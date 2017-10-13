@@ -18,15 +18,6 @@ public class BrokerHandler implements InterceptHandler {
 
     private static final Logger log = LoggerFactory.getLogger(BrokerHandler.class);
 
-    @Override
-    public String getID() {
-        return null;
-    }
-
-    @Override
-    public Class<?>[] getInterceptedMessageTypes() {
-        return new Class[0];
-    }
 
     public void onConnect(InterceptConnectMessage arg0) {
         String clientID = arg0.getClientID();
@@ -72,10 +63,7 @@ public class BrokerHandler implements InterceptHandler {
 //		System.out.println("设备："+clientID+"，下线，断开broker.........................................");
     }
 
-    @Override
-    public void onConnectionLost(InterceptConnectionLostMessage interceptConnectionLostMessage) {
 
-    }
 
     public void onPublish(InterceptPublishMessage arg0) {
         String clientID = arg0.getClientID();
@@ -124,10 +112,6 @@ public class BrokerHandler implements InterceptHandler {
         log.debug(clientID + "取消订阅了，主题：" + topic);
     }
 
-    @Override
-    public void onMessageAcknowledged(InterceptAcknowledgedMessage interceptAcknowledgedMessage) {
-
-    }
 
 
 }
