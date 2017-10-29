@@ -27,17 +27,17 @@ public class Broker {
         final Server server = new Server();
         //SSL 加密配置
         Properties sslProps = new Properties();
-        //SSL 加密通道端口
-        sslProps.put(BrokerConstants.SSL_PORT_PROPERTY_NAME, MqttConst.SSL_PORT);
-        //密钥位置，这里是项目根目录
-        sslProps.put(BrokerConstants.JKS_PATH_PROPERTY_NAME, MqttConst.JKS_PATH);
-        sslProps.put(BrokerConstants.KEY_STORE_PASSWORD_PROPERTY_NAME, MqttConst.KEY_STORE_PASSWORD);
-        sslProps.put(BrokerConstants.KEY_MANAGER_PASSWORD_PROPERTY_NAME, MqttConst.KEY_MANAGER_PASSWORD);
-        sslProps.put(BrokerConstants.WSS_PORT_PROPERTY_NAME, MqttConst.SECURE_WEBSOCKET_PORT);
+//        //SSL 加密通道端口
+//        sslProps.put(BrokerConstants.SSL_PORT_PROPERTY_NAME, MqttConst.SSL_PORT);
+//        //密钥位置，这里是项目根目录
+//        sslProps.put(BrokerConstants.JKS_PATH_PROPERTY_NAME, MqttConst.JKS_PATH);
+//        sslProps.put(BrokerConstants.KEY_STORE_PASSWORD_PROPERTY_NAME, MqttConst.KEY_STORE_PASSWORD);
+//        sslProps.put(BrokerConstants.KEY_MANAGER_PASSWORD_PROPERTY_NAME, MqttConst.KEY_MANAGER_PASSWORD);
+//        sslProps.put(BrokerConstants.WSS_PORT_PROPERTY_NAME, MqttConst.SECURE_WEBSOCKET_PORT);
 
         //未加密端口，暂时不知道如何屏蔽这两个端口
-        sslProps.put(BrokerConstants.PORT_PROPERTY_NAME, MqttConst.PORT);
-        sslProps.put(BrokerConstants.WEB_SOCKET_PORT_PROPERTY_NAME, MqttConst.WEB_SOCKET_PORT);
+//        sslProps.put(BrokerConstants.PORT_PROPERTY_NAME, MqttConst.PORT);
+//        sslProps.put(BrokerConstants.WEB_SOCKET_PORT_PROPERTY_NAME, MqttConst.WEB_SOCKET_PORT);
 
         final IConfig config = new MemoryConfig(sslProps);
 
