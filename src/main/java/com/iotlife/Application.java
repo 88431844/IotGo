@@ -1,12 +1,14 @@
-package com.iotlife.iotlife;
+package com.iotlife;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@MapperScan("com.iotlife.dao")
 @SpringBootApplication
-public class IotlifeApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(IotlifeApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

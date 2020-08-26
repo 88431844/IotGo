@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotlife.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.iotlife.entity.User">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="userLoginName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userPassword" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userTel" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="userDes" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, userLoginName, userPassword, userName, userTel, userDes
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.iotlife.entity.User">
+    insert into user (id, userLoginName, userPassword, 
+      userName, userTel, userDes
+      )
+    values (#{id,jdbcType=INTEGER}, #{userloginname,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{usertel,jdbcType=INTEGER}, #{userdes,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.iotlife.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userloginname != null">
+                userLoginName,
+            </if>
+            <if test="userpassword != null">
+                userPassword,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="usertel != null">
+                userTel,
+            </if>
+            <if test="userdes != null">
+                userDes,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userloginname != null">
+                #{userloginname,jdbcType=VARCHAR},
+            </if>
+            <if test="userpassword != null">
+                #{userpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="usertel != null">
+                #{usertel,jdbcType=INTEGER},
+            </if>
+            <if test="userdes != null">
+                #{userdes,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iotlife.entity.User">
+        update user
+        <set>
+            <if test="userloginname != null">
+                userLoginName = #{userloginname,jdbcType=VARCHAR},
+            </if>
+            <if test="userpassword != null">
+                userPassword = #{userpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                userName = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="usertel != null">
+                userTel = #{usertel,jdbcType=INTEGER},
+            </if>
+            <if test="userdes != null">
+                userDes = #{userdes,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iotlife.entity.User">
+    update user
+    set userLoginName = #{userloginname,jdbcType=VARCHAR},
+      userPassword = #{userpassword,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userTel = #{usertel,jdbcType=INTEGER},
+      userDes = #{userdes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <!--用户登录查询-->
+    <select id="selectByLoginNameAndPass" parameterType="com.iotlife.dto.UserDto" resultMap="BaseResultMap">
+        select
+        *
+        from user
+        where
+        userLoginName = #{userLoginName} AND
+        userPassword = #{userPassword}
+    </select>
+
+    <!--查询所有用户-->
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        select
+        *
+        from user
+    </select>
+</mapper>

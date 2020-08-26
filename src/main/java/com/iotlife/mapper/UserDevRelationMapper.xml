@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotlife.dao.UserDevRelationMapper">
+    <resultMap id="BaseResultMap" type="com.iotlife.entity.UserDevRelation">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="devId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, userId, devId
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from userdevrelation
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userdevrelation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.iotlife.entity.UserDevRelation">
+    insert into userdevrelation (id, userId, devId
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{devid,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.iotlife.entity.UserDevRelation">
+        insert into userdevrelation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="devid != null">
+                devId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="devid != null">
+                #{devid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iotlife.entity.UserDevRelation">
+        update userdevrelation
+        <set>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="devid != null">
+                devId = #{devid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iotlife.entity.UserDevRelation">
+    update userdevrelation
+    set userId = #{userid,jdbcType=INTEGER},
+      devId = #{devid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!--删除用户下的某个设备（解绑用户设备）-->
+    <delete id="delByUserIdAndDevId" parameterType="com.iotlife.entity.UserDevRelation">
+        delete from userdevrelation
+        where userId = #{userid}
+        and devId = #{devid}
+    </delete>
+
+    <!--解绑用户所有设备-->
+    <delete id="unBindUserAllDev" parameterType="com.java.lang.String">
+        delete from userdevrelation
+        where userId = #{userid}
+    </delete>
+</mapper>
