@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.iotgo.dao.DevMapper">
+    <resultMap id="BaseResultMap" type="fun.iotgo.entity.Dev">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="devName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="devType" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="devDes" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="devTopic" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, devName, devType, devDes, devTopic
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from dev
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dev
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="fun.iotgo.entity.Dev">
+        insert into dev (id, devName, devType,
+        devDes, devTopic)
+        values (#{id,jdbcType=INTEGER}, #{devname,jdbcType=VARCHAR}, #{devtype,jdbcType=INTEGER},
+        #{devdes,jdbcType=VARCHAR}, #{devtopic,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyProperty="id" parameterType="fun.iotgo.entity.Dev">
+        insert into dev
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="devname != null">
+                devName,
+            </if>
+            <if test="devtype != null">
+                devType,
+            </if>
+            <if test="devdes != null">
+                devDes,
+            </if>
+            <if test="devtopic != null">
+                devTopic,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="devname != null">
+                #{devname,jdbcType=VARCHAR},
+            </if>
+            <if test="devtype != null">
+                #{devtype,jdbcType=INTEGER},
+            </if>
+            <if test="devdes != null">
+                #{devdes,jdbcType=VARCHAR},
+            </if>
+            <if test="devtopic != null">
+                #{devtopic,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fun.iotgo.entity.Dev">
+        update dev
+        <set>
+            <if test="devname != null">
+                devName = #{devname,jdbcType=VARCHAR},
+            </if>
+            <if test="devtype != null">
+                devType = #{devtype,jdbcType=INTEGER},
+            </if>
+            <if test="devdes != null">
+                devDes = #{devdes,jdbcType=VARCHAR},
+            </if>
+            <if test="devtopic != null">
+                devTopic = #{devtopic,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="fun.iotgo.entity.Dev">
+    update dev
+    set devName = #{devname,jdbcType=VARCHAR},
+      devType = #{devtype,jdbcType=INTEGER},
+      devDes = #{devdes,jdbcType=VARCHAR},
+        devTopic = #{devtopic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!--通过用户id查询设备列表-->
+    <select id="selectDevByUserId" resultType="fun.iotgo.dto.DevDto" parameterType="java.lang.String">
+        SELECT
+        d.id AS id,
+        d.devName AS devName,
+        d.devType AS devType,
+        t.devtypename AS devTypeName,
+        d.devDes AS devDes,
+        d.devTopic AS devTopic,
+        u.id AS userId,
+        ds.devstatus AS devStatus
+        FROM
+        dev d,
+        userdevrelation ud,
+        devtype t,
+        USER u,
+        devstatus ds
+        WHERE
+        d.id = ud.devId
+        AND t.id = d.devtype
+        AND ds.devId = d.id
+        AND ud.userId = #{userId}
+    </select>
+
+
+    <!--通过设备id查询devDto-->
+    <select id="selectDevDtoByPrimaryKey" resultType="fun.iotgo.dto.DevDto" parameterType="java.lang.Integer">
+        SELECT
+        d.id AS id,
+        d.devName AS devName,
+        d.devType AS devType,
+        t.devtypename AS devTypeName,
+        d.devDes AS devDes,
+        d.devTopic AS devTopic,
+        u.id AS userId,
+        ds.devstatus AS devStatus
+        FROM
+        dev d,
+        devtype t,
+        USER u,
+        userdevrelation ud,
+        devstatus ds
+        WHERE
+        d.devType = t.id
+        AND ud.devid = d.id
+        AND ds.devId = d.id
+        AND d.id = #{devId}
+    </select>
+</mapper>

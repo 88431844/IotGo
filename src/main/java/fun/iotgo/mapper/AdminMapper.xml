@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.iotgo.dao.AdminMapper">
+    <resultMap id="BaseResultMap" type="fun.iotgo.entity.Admin">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="adminLoginName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="adminPassword" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="adminName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, adminLoginName, adminPassword, adminName
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="fun.iotgo.entity.Admin">
+    insert into admin (id, adminLoginName, adminPassword, 
+      adminName)
+    values (#{id,jdbcType=INTEGER}, #{adminloginname,jdbcType=VARCHAR}, #{adminpassword,jdbcType=VARCHAR}, 
+      #{adminname,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="fun.iotgo.entity.Admin">
+        insert into admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="adminloginname != null">
+                adminLoginName,
+            </if>
+            <if test="adminpassword != null">
+                adminPassword,
+            </if>
+            <if test="adminname != null">
+                adminName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="adminloginname != null">
+                #{adminloginname,jdbcType=VARCHAR},
+            </if>
+            <if test="adminpassword != null">
+                #{adminpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="adminname != null">
+                #{adminname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fun.iotgo.entity.Admin">
+        update admin
+        <set>
+            <if test="adminloginname != null">
+                adminLoginName = #{adminloginname,jdbcType=VARCHAR},
+            </if>
+            <if test="adminpassword != null">
+                adminPassword = #{adminpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="adminname != null">
+                adminName = #{adminname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="fun.iotgo.entity.Admin">
+    update admin
+    set adminLoginName = #{adminloginname,jdbcType=VARCHAR},
+      adminPassword = #{adminpassword,jdbcType=VARCHAR},
+      adminName = #{adminname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <!--管理员登录查询-->
+    <select id="selectByLoginNameAndPass" parameterType="fun.iotgo.dto.AdminDto" resultMap="BaseResultMap">
+        select
+        *
+        from admin
+        where
+        adminLoginName = #{adminLoginName} AND
+        adminPassword = #{adminPassword}
+    </select>
+</mapper>

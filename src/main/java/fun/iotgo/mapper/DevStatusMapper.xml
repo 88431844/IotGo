@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.iotgo.dao.DevStatusMapper">
+    <resultMap id="BaseResultMap" type="fun.iotgo.entity.DevStatus">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="devId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="devStatus" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, devId, devStatus
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from devstatus
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from devstatus
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="fun.iotgo.entity.DevStatus">
+        insert into devstatus (id, devId, devStatus
+        )
+        values (#{id,jdbcType=INTEGER}, #{devid,jdbcType=INTEGER}, #{devstatus,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="fun.iotgo.entity.DevStatus">
+        insert into devstatus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="devid != null">
+                devId,
+            </if>
+            <if test="devstatus != null">
+                devStatus,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="devid != null">
+                #{devid,jdbcType=INTEGER},
+            </if>
+            <if test="devstatus != null">
+                #{devstatus,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fun.iotgo.entity.DevStatus">
+        update devstatus
+        <set>
+            <if test="devid != null">
+                devId = #{devid,jdbcType=INTEGER},
+            </if>
+            <if test="devstatus != null">
+                devStatus = #{devstatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="fun.iotgo.entity.DevStatus">
+        update devstatus
+        set devId = #{devid,jdbcType=INTEGER},
+        devStatus = #{devstatus,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--通过设备id查询对应设备状态-->
+    <select id="selectByDevId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from devstatus
+        where devId = #{devId,jdbcType=INTEGER}
+    </select>
+
+    <!--通过设备id删除对应设备状态-->
+    <delete id="delDevStatusByDevId" parameterType="java.lang.Integer">
+        delete from devstatus
+        where devId = #{devId,jdbcType=INTEGER}
+    </delete>
+</mapper>
