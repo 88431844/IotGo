@@ -6,27 +6,25 @@ import fun.iotgo.dto.DevDto;
 import fun.iotgo.entity.Dev;
 import fun.iotgo.entity.DevStatus;
 import fun.iotgo.entity.UserDevRelation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DevService {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
+    @Resource
     private DevMapper devMapper;
-    @Autowired
+    @Resource
     private UserDevRelationMapper userDevRelationMapper;
-    @Autowired
+    @Resource
     private DevService devService;
-    @Autowired
+    @Resource
     private DevStatusService devStatusService;
     /**
      * 添加设备

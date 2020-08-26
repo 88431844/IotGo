@@ -4,19 +4,17 @@ import fun.iotgo.dao.AdminMapper;
 import fun.iotgo.dao.UserMapper;
 import fun.iotgo.dto.AdminDto;
 import fun.iotgo.dto.UserDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
+@Slf4j
 public class LoginService {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
+    @Resource
     private AdminMapper adminMapper;
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     /**

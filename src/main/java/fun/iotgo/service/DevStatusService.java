@@ -2,16 +2,16 @@ package fun.iotgo.service;
 
 import fun.iotgo.dao.DevStatusMapper;
 import fun.iotgo.entity.DevStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Service
-public class DevStatusService {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+import javax.annotation.Resource;
 
-    @Autowired
+@Service
+@Slf4j
+public class DevStatusService {
+
+    @Resource
     private DevStatusMapper devStatusMapper;
 
     /**
