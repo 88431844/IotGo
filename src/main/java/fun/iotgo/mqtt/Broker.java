@@ -24,7 +24,7 @@ public class Broker {
         Server server = new Server();
 
         Properties properties = new Properties();
-        properties.setProperty("port", "9999");
+        properties.setProperty("port", "1883");
         IConfig config = new MemoryConfig(properties);
 
         List<BrokerHandler> handlers = new ArrayList<>();

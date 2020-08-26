@@ -27,6 +27,7 @@
         <lombok.version>1.18.12</lombok.version>
         <fastjson.version>1.2.73</fastjson.version>
         <jackson-databind.version>2.11.2</jackson-databind.version>
+        <mqtt-client.version>1.12</mqtt-client.version>
     </properties>
 
     <dependencies>
@@ -111,6 +112,11 @@
             <version>${jackson-databind.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.fusesource.mqtt-client</groupId>
+            <artifactId>mqtt-client</artifactId>
+            <version>${mqtt-client.version}</version>
+        </dependency>
 
     </dependencies>
 
