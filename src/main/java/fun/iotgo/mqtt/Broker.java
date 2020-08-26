@@ -1,11 +1,8 @@
 package fun.iotgo.mqtt;
 
-import io.moquette.server.Server;
-import io.moquette.server.config.IConfig;
-import io.moquette.server.config.MemoryConfig;
-import io.moquette.spi.security.IAuthenticator;
-import io.moquette.spi.security.IAuthorizator;
-import io.moquette.spi.security.ISslContextCreator;
+import io.moquette.broker.Server;
+import io.moquette.broker.config.IConfig;
+import io.moquette.broker.config.MemoryConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -17,46 +14,26 @@ import java.util.Properties;
 
 @Component
 @Slf4j
+/**
+ * MQTT broker 服务器
+ */
 public class Broker {
 
     @Bean
-    public String IotLifeBroker() throws IOException {
-        final Server server = new Server();
-        //SSL 加密配置
-        Properties sslProps = new Properties();
-//        //SSL 加密通道端口
-//        sslProps.put(BrokerConstants.SSL_PORT_PROPERTY_NAME, MqttConst.SSL_PORT);
-//        //密钥位置，这里是项目根目录
-//        sslProps.put(BrokerConstants.JKS_PATH_PROPERTY_NAME, MqttConst.JKS_PATH);
-//        sslProps.put(BrokerConstants.KEY_STORE_PASSWORD_PROPERTY_NAME, MqttConst.KEY_STORE_PASSWORD);
-//        sslProps.put(BrokerConstants.KEY_MANAGER_PASSWORD_PROPERTY_NAME, MqttConst.KEY_MANAGER_PASSWORD);
-//        sslProps.put(BrokerConstants.WSS_PORT_PROPERTY_NAME, MqttConst.SECURE_WEBSOCKET_PORT);
+    public String IotGoBroker() throws IOException {
+        Server server = new Server();
 
-        //未加密端口，暂时不知道如何屏蔽这两个端口
-//        sslProps.put(BrokerConstants.PORT_PROPERTY_NAME, MqttConst.PORT);
-//        sslProps.put(BrokerConstants.WEB_SOCKET_PORT_PROPERTY_NAME, MqttConst.WEB_SOCKET_PORT);
+        Properties properties = new Properties();
+        IConfig config = new MemoryConfig(properties);
 
-        final IConfig config = new MemoryConfig(sslProps);
-
-//	        final IConfig config = new FilesystemConfig();
-        //加载自定义handler
         List<BrokerHandler> handlers = new ArrayList<>();
         handlers.add(new BrokerHandler());
-        ISslContextCreator sslCtxCreator = null;
-        IAuthenticator authenticator = null;
-        IAuthorizator authorizator = null;
-        server.startServer(config, handlers, sslCtxCreator, authenticator, authorizator);
+        server.startServer(config, handlers);
 
-        log.info("IotLifeBroker started-------------");
-
-        //绑定一个关闭服务器钩子
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                server.stopServer();
-            }
-        });
+        log.info("IotGoBroker started-------------");
         return "";
     }
+
+
 
 }
