@@ -1,15 +1,12 @@
 package fun.iotgo.mqtt;
 
-import fun.iotgo.util.MqttConst;
-import io.moquette.BrokerConstants;
 import io.moquette.server.Server;
 import io.moquette.server.config.IConfig;
 import io.moquette.server.config.MemoryConfig;
 import io.moquette.spi.security.IAuthenticator;
 import io.moquette.spi.security.IAuthorizator;
 import io.moquette.spi.security.ISslContextCreator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +16,9 @@ import java.util.List;
 import java.util.Properties;
 
 @Component
+@Slf4j
 public class Broker {
 
-    private static final Logger log = LoggerFactory.getLogger(Broker.class);
     @Bean
     public String IotLifeBroker() throws IOException {
         final Server server = new Server();
@@ -43,7 +40,7 @@ public class Broker {
 
 //	        final IConfig config = new FilesystemConfig();
         //加载自定义handler
-        List<BrokerHandler> handlers = new ArrayList<BrokerHandler>();
+        List<BrokerHandler> handlers = new ArrayList<>();
         handlers.add(new BrokerHandler());
         ISslContextCreator sslCtxCreator = null;
         IAuthenticator authenticator = null;

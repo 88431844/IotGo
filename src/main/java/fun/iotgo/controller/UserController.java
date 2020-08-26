@@ -4,15 +4,14 @@ import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.dto.UserDto;
 import fun.iotgo.service.UserService;
 import fun.iotgo.util.myconst;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +19,10 @@ import java.util.List;
  *用户controller
  */
 @RestController
+@RequestMapping("/user")
+@Slf4j
 public class UserController {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
+    @Resource
     private UserService userService;
 
     /**
@@ -40,7 +39,7 @@ public class UserController {
             userService.addUser(userDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("UserController addUser error");
+            log.error("UserController addUser error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -60,7 +59,7 @@ public class UserController {
             userService.delUser(userDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("UserController delUser error");
+            log.error("UserController delUser error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -80,7 +79,7 @@ public class UserController {
             userService.updateUser(userDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("UserController updateUser error");
+            log.error("UserController updateUser error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -101,7 +100,7 @@ public class UserController {
             ret.setData(userService.selectUserById(userDto));
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("UserController selectUserById error");
+            log.error("UserController selectUserById error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -126,7 +125,7 @@ public class UserController {
                 ret.setCode(myconst.EMPTY_LIST);
             }
         } catch (Exception e) {
-            logger.error("UserController selectAllUser error");
+            log.error("UserController selectAllUser error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }

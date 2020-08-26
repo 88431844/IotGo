@@ -1,17 +1,16 @@
 package fun.iotgo.dto;
 
-import org.hibernate.validator.constraints.NotBlank;
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class UserDto {
 
     private String id;
     @NotNull(message = "用户账号不能为null")
-    @NotBlank(message = "用户员账号不能为空白")
+    @NotEmpty(message = "用户员账号不能为空白")
     private String userLoginName;
     @NotNull(message = "用户密码不能为null")
-    @NotBlank(message = "用户密码不能为空白")
+    @NotEmpty(message = "用户密码不能为空白")
     private String userPassword;
     private String userName;
     private String userTel;

@@ -4,26 +4,24 @@ import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.dto.DevDto;
 import fun.iotgo.service.DevService;
 import fun.iotgo.util.myconst;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 设备controller
  */
 @RestController
+@RequestMapping("/dev")
+@Slf4j
 public class DevController {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
+    @Resource
     private DevService devService;
 
     /**
@@ -40,7 +38,7 @@ public class DevController {
             devService.addDev(devDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController addDev error");
+            log.error("DevController addDev error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -69,7 +67,7 @@ public class DevController {
                 ret.setCode(myconst.DEV_HAVE_Bind_CODE);
             }
         } catch (Exception e) {
-            logger.error("DevController delDev error");
+            log.error("DevController delDev error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -90,7 +88,7 @@ public class DevController {
             devService.updateDev(devDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController updateDev error");
+            log.error("DevController updateDev error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -111,7 +109,7 @@ public class DevController {
             ret.setData(devService.selectById(devDto));
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController selectDevById error");
+            log.error("DevController selectDevById error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -142,7 +140,7 @@ public class DevController {
                 ret.setCode(myconst.FAIL);
             }
         } catch (Exception e) {
-            logger.error("DevController selectDevByUserId error");
+            log.error("DevController selectDevByUserId error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -164,7 +162,7 @@ public class DevController {
             devService.bindDevToUser(devDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController bindDevToUser error");
+            log.error("DevController bindDevToUser error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -185,7 +183,7 @@ public class DevController {
             devService.unBindDevToUser(devDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController unBindDevToUser error");
+            log.error("DevController unBindDevToUser error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -206,7 +204,7 @@ public class DevController {
             devService.unBindUserAllDev(devDto);
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
-            logger.error("DevController unBindUserAllDev error");
+            log.error("DevController unBindUserAllDev error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }

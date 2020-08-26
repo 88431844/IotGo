@@ -5,24 +5,23 @@ import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.dto.UserDto;
 import fun.iotgo.service.LoginService;
 import fun.iotgo.util.myconst;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 /**
  * 登录controller
  */
 @RestController
+@RequestMapping("/login")
+@Slf4j
 public class LoginController {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
+    @Resource
     private LoginService loginService;
 
     /**
@@ -45,7 +44,7 @@ public class LoginController {
                 ret.setCode(myconst.FAIL);
             }
         } catch (Exception e) {
-            logger.error("LoginController adminLogin error");
+            log.error("LoginController adminLogin error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
@@ -71,7 +70,7 @@ public class LoginController {
                 ret.setCode(myconst.FAIL);
             }
         } catch (Exception e) {
-            logger.error("LoginController userLogin error");
+            log.error("LoginController userLogin error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
