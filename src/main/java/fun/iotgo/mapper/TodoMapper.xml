@@ -13,6 +13,7 @@
             <arg column="isDone" javaType="java.lang.Byte" jdbcType="TINYINT"/>
             <arg column="belongListId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="deviceId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="orderSum" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         </constructor>
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="fun.iotgo.entity.Todo">
@@ -27,11 +28,13 @@
             <arg column="isDone" javaType="java.lang.Byte" jdbcType="TINYINT"/>
             <arg column="belongListId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="deviceId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="orderSum" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR"/>
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
-    id, title, url, startTime, endTime, isCycle, cycleTime, isDone, belongListId, deviceId
+    id, title, url, startTime, endTime, isCycle, cycleTime, isDone, belongListId, deviceId, 
+    orderSum
   </sql>
     <sql id="Blob_Column_List">
     content
@@ -52,11 +55,13 @@
     insert into todo (id, title, url, 
       startTime, endTime, isCycle, 
       cycleTime, isDone, belongListId, 
-      deviceId, content)
+      deviceId, orderSum, content
+      )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{iscycle,jdbcType=TINYINT}, 
       #{cycletime,jdbcType=TIMESTAMP}, #{isdone,jdbcType=TINYINT}, #{belonglistid,jdbcType=INTEGER}, 
-      #{deviceid,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+      #{deviceid,jdbcType=INTEGER}, #{ordersum,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
     <insert id="insertSelective" parameterType="fun.iotgo.entity.Todo">
         insert into todo
@@ -90,6 +95,9 @@
             </if>
             <if test="deviceid != null">
                 deviceId,
+            </if>
+            <if test="ordersum != null">
+                orderSum,
             </if>
             <if test="content != null">
                 content,
@@ -126,6 +134,9 @@
             <if test="deviceid != null">
                 #{deviceid,jdbcType=INTEGER},
             </if>
+            <if test="ordersum != null">
+                #{ordersum,jdbcType=INTEGER},
+            </if>
             <if test="content != null">
                 #{content,jdbcType=LONGVARCHAR},
             </if>
@@ -161,6 +172,9 @@
             <if test="deviceid != null">
                 deviceId = #{deviceid,jdbcType=INTEGER},
             </if>
+            <if test="ordersum != null">
+                orderSum = #{ordersum,jdbcType=INTEGER},
+            </if>
             <if test="content != null">
                 content = #{content,jdbcType=LONGVARCHAR},
             </if>
@@ -178,6 +192,7 @@
       isDone = #{isdone,jdbcType=TINYINT},
       belongListId = #{belonglistid,jdbcType=INTEGER},
       deviceId = #{deviceid,jdbcType=INTEGER},
+      orderSum = #{ordersum,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -191,7 +206,8 @@
       cycleTime = #{cycletime,jdbcType=TIMESTAMP},
       isDone = #{isdone,jdbcType=TINYINT},
       belongListId = #{belonglistid,jdbcType=INTEGER},
-      deviceId = #{deviceid,jdbcType=INTEGER}
+      deviceId = #{deviceid,jdbcType=INTEGER},
+      orderSum = #{ordersum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

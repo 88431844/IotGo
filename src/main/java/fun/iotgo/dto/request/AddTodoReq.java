@@ -50,4 +50,9 @@ public class AddTodoReq extends CommonRequestDto {
      * 提醒归属设备的Id(需要提醒到哪个设备上)
      */
     private String deviceId;
+    /**
+     * 提醒顺序
+     * 0优先级最低，数越大越往上
+     */
+    private int orderSum;
 }
