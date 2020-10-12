@@ -1,38 +1,19 @@
 package fun.iotgo.dto;
 
+import lombok.Data;
+
 /**
- * @Author miracle
- * @Date 2017/9/18 0018 14:38
+ * 请求公共类
  */
+@Data
 public class CommonRequestDto {
     //每页页数
     private long pageSize;
     //第几页
     private long pageIndex;
     //是否需要分页
-    boolean needPage;
+    private boolean needPage;
+    //请求token
+    private String token;
 
-    public long getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(long pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public long getPageIndex() {
-        return pageIndex;
-    }
-
-    public void setPageIndex(long pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    public boolean isNeedPage() {
-        return needPage;
-    }
-
-    public void setNeedPage(boolean needPage) {
-        this.needPage = needPage;
-    }
 }
