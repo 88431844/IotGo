@@ -2,7 +2,7 @@ package fun.iotgo.controller;
 
 import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.dto.UserDto;
-import fun.iotgo.service.UserService;
+import fun.iotgo.service.impl.UserServiceIm;
 import fun.iotgo.util.myconst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -23,13 +23,10 @@ import java.util.List;
 @Slf4j
 public class UserController {
     @Resource
-    private UserService userService;
+    private UserServiceIm userService;
 
     /**
      * 添加用户
-     *
-     * @param userDto
-     * @return
      */
     @RequestMapping("/addUser")
     @ResponseBody
@@ -48,8 +45,6 @@ public class UserController {
 
     /**
      * 删除用户
-     * @param userDto
-     * @return
      */
     @RequestMapping("/delUser")
     @ResponseBody
@@ -68,8 +63,6 @@ public class UserController {
 
     /**
      * 修改用户
-     * @param userDto
-     * @return
      */
     @RequestMapping("/updateUser")
     @ResponseBody
@@ -88,9 +81,6 @@ public class UserController {
 
     /**
      * 查询用户通过用户id
-     *
-     * @param userDto
-     * @return
      */
     @RequestMapping("/selectUserById")
     @ResponseBody
@@ -109,8 +99,6 @@ public class UserController {
 
     /**
      * 查询所有用户列表
-     *
-     * @return
      */
     @RequestMapping("/selectAllUser")
     @ResponseBody

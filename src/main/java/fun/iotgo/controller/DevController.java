@@ -26,9 +26,6 @@ public class DevController {
 
     /**
      * 添加设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/addDev")
     @ResponseBody
@@ -47,9 +44,6 @@ public class DevController {
 
     /**
      * 删除设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/delDev")
     @ResponseBody
@@ -76,9 +70,6 @@ public class DevController {
 
     /**
      * 修改设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/updateDev")
     @ResponseBody
@@ -97,9 +88,6 @@ public class DevController {
 
     /**
      * 通过设备id查询设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/selectDevById")
     @ResponseBody
@@ -118,9 +106,6 @@ public class DevController {
 
     /**
      * 通过用户id查询该用户下面绑定的设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/selectDevByUserId")
     @ResponseBody
@@ -150,9 +135,6 @@ public class DevController {
 
     /**
      * 用户绑定设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/bindDevToUser")
     @ResponseBody
@@ -171,9 +153,6 @@ public class DevController {
 
     /**
      * 用户解绑设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/unBindDevToUser")
     @ResponseBody
@@ -192,9 +171,6 @@ public class DevController {
 
     /**
      * 解绑用户所有设备
-     *
-     * @param devDto
-     * @return
      */
     @RequestMapping("/unBindUserAllDev")
     @ResponseBody

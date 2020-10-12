@@ -2,7 +2,7 @@ package fun.iotgo.controller;
 
 import fun.iotgo.dto.AdminDto;
 import fun.iotgo.dto.CommonResponseDto;
-import fun.iotgo.service.AdminService;
+import fun.iotgo.service.impl.AdminServiceIm;
 import fun.iotgo.util.myconst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -21,13 +21,10 @@ import javax.annotation.Resource;
 @Slf4j
 public class AdminController {
     @Resource
-    private AdminService adminService;
+    private AdminServiceIm adminService;
 
     /**
      * 更新管理员信息
-     *
-     * @param adminDto
-     * @return
      */
     @RequestMapping("/updateAdmin")
     @ResponseBody

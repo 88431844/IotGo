@@ -3,7 +3,7 @@ package fun.iotgo.controller;
 import fun.iotgo.dto.AdminDto;
 import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.dto.UserDto;
-import fun.iotgo.service.LoginService;
+import fun.iotgo.service.impl.LoginServiceIm;
 import fun.iotgo.util.myconst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -22,13 +22,10 @@ import javax.annotation.Resource;
 @Slf4j
 public class LoginController {
     @Resource
-    private LoginService loginService;
+    private LoginServiceIm loginService;
 
     /**
      * 管理员登录
-     *
-     * @param adminDto
-     * @return
      */
     @RequestMapping("/adminLogin")
     @ResponseBody
@@ -53,8 +50,6 @@ public class LoginController {
 
     /**
      * 用户登录
-     * @param userDto
-     * @return
      */
     @RequestMapping("/userLogin")
     @ResponseBody
