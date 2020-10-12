@@ -8,7 +8,7 @@
     <!--指定特定数据库的jdbc驱动jar包的位置 -->
     <!--<classPathEntry location="${jdbc.driverLocation}"/>-->
     <classPathEntry
-            location="C:\Users\miracle\.m2\repository\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar"/>
+            location="mysql-connector-java-8.0.21.jar"/>
     <context id="default" targetRuntime="MyBatis3">
         <!-- optional，旨在创建class时，对注释进行控制 -->
         <commentGenerator>
@@ -16,8 +16,8 @@
             <property name="suppressAllComments" value="true"></property>
         </commentGenerator>
         <!--jdbc的数据库连接 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/iotlife"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/iotgo"
                         userId="root"
                         password="">
         </jdbcConnection>
@@ -55,7 +55,7 @@
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="devstatus" domainObjectName="DevStatus"
+        <table tableName="todoList" domainObjectName="TodoList"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
