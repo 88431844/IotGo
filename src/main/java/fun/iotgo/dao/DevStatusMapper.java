@@ -17,16 +17,11 @@ public interface DevStatusMapper {
 
     /**
      * 通过设备id查询对应设备状态
-     *
-     * @param devId
-     * @return
      */
     DevStatus selectByDevId(Integer devId);
 
     /**
      * 通过设备id删除对应设备状态
-     *
-     * @param devId
      */
     void delDevStatusByDevId(Integer devId);
 }

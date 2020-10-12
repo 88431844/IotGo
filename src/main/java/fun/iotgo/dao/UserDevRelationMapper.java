@@ -17,15 +17,11 @@ public interface UserDevRelationMapper {
 
     /**
      * 通过用户id和设备id删除用户绑定设备关系
-     *
-     * @param userDevRelation
      */
     void delByUserIdAndDevId(UserDevRelation userDevRelation);
 
     /**
      * 解绑用户所有设备
-     *
-     * @param userId
      */
     void unBindUserAllDev(String userId);
 }

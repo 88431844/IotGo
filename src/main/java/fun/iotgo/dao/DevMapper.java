@@ -20,17 +20,11 @@ public interface DevMapper {
 
     /**
      * 通过用户id查询该用户下面绑定设备
-     *
-     * @param userId
-     * @return
      */
     List<DevDto> selectDevByUserId(String userId);
 
     /**
      * 通过设备id查询devDto
-     *
-     * @param devId
-     * @return
      */
     DevDto selectDevDtoByPrimaryKey(Integer devId);
 }

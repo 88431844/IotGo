@@ -18,9 +18,6 @@ public interface AdminMapper {
 
     /**
      * 通过账号密码查询管理员信息
-     *
-     * @param adminDto
-     * @return
      */
     AdminDto selectByLoginNameAndPass(AdminDto adminDto);
 }

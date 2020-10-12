@@ -20,16 +20,11 @@ public interface UserMapper {
 
     /**
      * 通过账号密码查询用户信息
-     *
-     * @param userDto
-     * @return
      */
     UserDto selectByLoginNameAndPass(UserDto userDto);
 
     /**
      * 查询全部用户信息
-     *
-     * @return
      */
     List<UserDto> selectAllUser();
 }
