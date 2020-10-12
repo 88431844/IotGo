@@ -29,6 +29,8 @@ public class AddTodoReq extends CommonRequestDto {
     private String endTime;
     /**
      * 是否为周期提醒
+     * <p>
+     * 1代表TRUE,0代表FALSE
      */
     private boolean isCycle;
     /**
@@ -37,6 +39,7 @@ public class AddTodoReq extends CommonRequestDto {
     private String cycleTime;
     /**
      * 是否完成
+     * 1代表TRUE,0代表FALSE
      */
     private boolean isDone;
     /**

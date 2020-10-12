@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.iotgo.dao.TodoMapper">
+    <resultMap id="BaseResultMap" type="fun.iotgo.entity.Todo">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="startTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="endTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="isCycle" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="cycleTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="isDone" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="belongListId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="deviceId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="fun.iotgo.entity.Todo">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="startTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="endTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="isCycle" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="cycleTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="isDone" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="belongListId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="deviceId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, title, url, startTime, endTime, isCycle, cycleTime, isDone, belongListId, deviceId
+  </sql>
+    <sql id="Blob_Column_List">
+    content
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from todo
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from todo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="fun.iotgo.entity.Todo">
+    insert into todo (id, title, url, 
+      startTime, endTime, isCycle, 
+      cycleTime, isDone, belongListId, 
+      deviceId, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{iscycle,jdbcType=TINYINT}, 
+      #{cycletime,jdbcType=TIMESTAMP}, #{isdone,jdbcType=TINYINT}, #{belonglistid,jdbcType=INTEGER}, 
+      #{deviceid,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="fun.iotgo.entity.Todo">
+        insert into todo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="starttime != null">
+                startTime,
+            </if>
+            <if test="endtime != null">
+                endTime,
+            </if>
+            <if test="iscycle != null">
+                isCycle,
+            </if>
+            <if test="cycletime != null">
+                cycleTime,
+            </if>
+            <if test="isdone != null">
+                isDone,
+            </if>
+            <if test="belonglistid != null">
+                belongListId,
+            </if>
+            <if test="deviceid != null">
+                deviceId,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="iscycle != null">
+                #{iscycle,jdbcType=TINYINT},
+            </if>
+            <if test="cycletime != null">
+                #{cycletime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isdone != null">
+                #{isdone,jdbcType=TINYINT},
+            </if>
+            <if test="belonglistid != null">
+                #{belonglistid,jdbcType=INTEGER},
+            </if>
+            <if test="deviceid != null">
+                #{deviceid,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="fun.iotgo.entity.Todo">
+        update todo
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null">
+                startTime = #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="iscycle != null">
+                isCycle = #{iscycle,jdbcType=TINYINT},
+            </if>
+            <if test="cycletime != null">
+                cycleTime = #{cycletime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isdone != null">
+                isDone = #{isdone,jdbcType=TINYINT},
+            </if>
+            <if test="belonglistid != null">
+                belongListId = #{belonglistid,jdbcType=INTEGER},
+            </if>
+            <if test="deviceid != null">
+                deviceId = #{deviceid,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="fun.iotgo.entity.Todo">
+    update todo
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      isCycle = #{iscycle,jdbcType=TINYINT},
+      cycleTime = #{cycletime,jdbcType=TIMESTAMP},
+      isDone = #{isdone,jdbcType=TINYINT},
+      belongListId = #{belonglistid,jdbcType=INTEGER},
+      deviceId = #{deviceid,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="fun.iotgo.entity.Todo">
+    update todo
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      isCycle = #{iscycle,jdbcType=TINYINT},
+      cycleTime = #{cycletime,jdbcType=TIMESTAMP},
+      isDone = #{isdone,jdbcType=TINYINT},
+      belongListId = #{belonglistid,jdbcType=INTEGER},
+      deviceId = #{deviceid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
