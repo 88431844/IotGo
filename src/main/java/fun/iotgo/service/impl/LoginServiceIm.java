@@ -20,9 +20,6 @@ public class LoginServiceIm implements LoginService {
 
     /**
      * 管理员登录
-     *
-     * @param adminDto
-     * @return
      */
     public AdminDto adminLogin(AdminDto adminDto) throws Exception {
         return adminMapper.selectByLoginNameAndPass(adminDto);
@@ -30,9 +27,6 @@ public class LoginServiceIm implements LoginService {
 
     /**
      * 用户登录
-     *
-     * @param userDto
-     * @return
      */
     public UserDto userLogin(UserDto userDto) throws Exception {
         return userMapper.selectByLoginNameAndPass(userDto);

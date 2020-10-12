@@ -31,9 +31,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 添加设备
-     *
-     * @param devDto
-     * @throws Exception
      */
     @Transactional
     public void addDev(DevDto devDto) throws Exception {
@@ -55,9 +52,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 删除设备
-     *
-     * @param devDto
-     * @throws Exception
      */
     @Transactional
     public int delDev(DevDto devDto) throws Exception {
@@ -78,9 +72,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 更新设备
-     *
-     * @param devDto
-     * @throws Exception
      */
     public void updateDev(DevDto devDto) throws Exception {
         Dev dev = new Dev();
@@ -90,9 +81,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 通过设备id查询设备信息
-     *
-     * @param devDto
-     * @return
      */
     public DevDto selectById(DevDto devDto) throws Exception {
         return devMapper.selectDevDtoByPrimaryKey(devDto.getId());
@@ -100,9 +88,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 通过用户id查询该用户下设备列表
-     *
-     * @param devDto
-     * @return
      */
     public List<DevDto> selectDevByUserId(DevDto devDto) throws Exception {
         return devMapper.selectDevByUserId(devDto.getUserId());
@@ -110,8 +95,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 用户绑定设备
-     *
-     * @param devDto
      */
     public void bindDevToUser(DevDto devDto) throws Exception {
         UserDevRelation userDevRelation = new UserDevRelation();
@@ -122,8 +105,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 用户解绑设备
-     *
-     * @param devDto
      */
     public void unBindDevToUser(DevDto devDto) throws Exception {
         UserDevRelation userDevRelation = new UserDevRelation();
@@ -134,8 +115,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 解绑用户所有设备
-     *
-     * @param devDto
      */
     public void unBindUserAllDev(DevDto devDto) throws Exception {
         userDevRelationMapper.unBindUserAllDev(devDto.getUserId());
@@ -143,8 +122,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 添加对应设备的状态
-     *
-     * @param devStatus
      */
     public void addDevStatus(DevStatus devStatus) throws Exception {
         devStatusMapper.insertSelective(devStatus);
@@ -152,8 +129,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 删除对应设备的状态
-     *
-     * @param devStatus
      */
     public void delDevStatus(DevStatus devStatus) throws Exception {
         devStatusMapper.deleteByPrimaryKey(devStatus.getId());
@@ -161,8 +136,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 更新对应设备的状态
-     *
-     * @param devStatus
      */
     public void updateDevStatus(DevStatus devStatus) throws Exception {
         devStatusMapper.updateByPrimaryKeySelective(devStatus);
@@ -170,9 +143,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 通过设备id查询对应设备状态
-     *
-     * @param devStatus
-     * @return
      */
     public DevStatus selectDevStatusByDevId(DevStatus devStatus) throws Exception {
         return devStatusMapper.selectByDevId(devStatus.getDevid());
@@ -180,8 +150,6 @@ public class DevServiceIm implements DevService {
 
     /**
      * 通过设备id删除对应设备状态
-     *
-     * @param devId
      */
     public void delDevStatusByDevId(Integer devId) throws Exception {
         devStatusMapper.delDevStatusByDevId(devId);
