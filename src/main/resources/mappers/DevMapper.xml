@@ -158,7 +158,7 @@
         dev d,
         userdevrelation ud,
         devtype t,
-        USER u,
+        `user` u,
         devstatus ds
     </select>
 </mapper>
