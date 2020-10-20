@@ -1,6 +1,7 @@
 package fun.iotgo.dao;
 
 import fun.iotgo.entity.UserDevRelation;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserDevRelationMapper {
     int deleteByPrimaryKey(Integer id);
@@ -23,5 +24,5 @@ public interface UserDevRelationMapper {
     /**
      * 解绑用户所有设备
      */
-    void unBindUserAllDev(String userId);
+    void unBindUserAllDev(@Param("userId") String userId);
 }
