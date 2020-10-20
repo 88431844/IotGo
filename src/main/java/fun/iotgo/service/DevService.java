@@ -72,4 +72,9 @@ public interface DevService {
      * 通过设备id删除对应设备状态
      */
     void delDevStatusByDevId(Integer devId) throws Exception;
+
+    /**
+     * 查询所有设备
+     */
+    List<DevDto> selectAllDev();
 }

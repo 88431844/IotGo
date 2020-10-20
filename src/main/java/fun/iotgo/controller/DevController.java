@@ -187,4 +187,22 @@ public class DevController {
         return ret;
     }
 
+    /**
+     * 查询所有设备
+     */
+    @RequestMapping("/selectAllDev")
+    @ResponseBody
+    public CommonResponseDto selectAllDev() {
+        CommonResponseDto ret = new CommonResponseDto();
+        try {
+            devService.selectAllDev();
+            ret.setCode(myconst.SUCCESS);
+        } catch (Exception e) {
+            log.error("DevController selectAllDev error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 }

@@ -141,4 +141,24 @@
         AND ds.devId = d.id
         AND d.id = #{devId}
     </select>
+
+
+    <!--查询所有设备信息-->
+    <select id="selectAllDev" resultType="fun.iotgo.dto.DevDto" parameterType="java.lang.String">
+        SELECT
+        d.id AS id,
+        d.devName AS devName,
+        d.devType AS devType,
+        t.devtypename AS devTypeName,
+        d.devDes AS devDes,
+        d.devTopic AS devTopic,
+        u.id AS userId,
+        ds.devstatus AS devStatus
+        FROM
+        dev d,
+        userdevrelation ud,
+        devtype t,
+        USER u,
+        devstatus ds
+    </select>
 </mapper>

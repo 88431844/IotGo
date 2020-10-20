@@ -27,4 +27,9 @@ public interface DevMapper {
      * 通过设备id查询devDto
      */
     DevDto selectDevDtoByPrimaryKey(Integer devId);
+
+    /**
+     * 查询所有设备
+     */
+    List<DevDto> selectAllDev();
 }

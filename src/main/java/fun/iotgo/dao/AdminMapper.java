@@ -2,7 +2,11 @@ package fun.iotgo.dao;
 
 import fun.iotgo.dto.AdminDto;
 import fun.iotgo.entity.Admin;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer id);
 

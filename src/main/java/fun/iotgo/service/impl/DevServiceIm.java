@@ -154,4 +154,9 @@ public class DevServiceIm implements DevService {
     public void delDevStatusByDevId(Integer devId) throws Exception {
         devStatusMapper.delDevStatusByDevId(devId);
     }
+
+    @Override
+    public List<DevDto> selectAllDev() {
+        return devMapper.selectAllDev();
+    }
 }

@@ -49,7 +49,7 @@ public class TodoController {
      */
     @RequestMapping("/delTodo")
     @ResponseBody
-    public CommonResponseDto delDev(@RequestBody @Validated String id) {
+    public CommonResponseDto delDev(@RequestBody @Validated int id) {
         CommonResponseDto ret = new CommonResponseDto();
         try {
             todoService.delTodo(id);
@@ -84,10 +84,10 @@ public class TodoController {
      */
     @RequestMapping("/selectTodoById")
     @ResponseBody
-    public CommonResponseDto selectTodoById(@RequestBody @Validated String id) {
+    public CommonResponseDto selectTodoById(@RequestBody @Validated int id) {
         CommonResponseDto ret = new CommonResponseDto();
         try {
-            ret.setData(todoService.selectById(id));
+            ret.setData(todoService.selectTodoById(id));
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
             log.error("TodoController selectTodoById error");
@@ -96,4 +96,42 @@ public class TodoController {
         }
         return ret;
     }
+
+    /**
+     * 通过设备id查询提醒列表
+     */
+    @RequestMapping("/selectTodoListByDeviceId")
+    @ResponseBody
+    public CommonResponseDto selectTodoListByDeviceId(@RequestBody @Validated int deviceId) {
+        CommonResponseDto ret = new CommonResponseDto();
+        try {
+            ret.setData(todoService.selectTodoListByDeviceId(deviceId));
+            ret.setCode(myconst.SUCCESS);
+        } catch (Exception e) {
+            log.error("TodoController selectTodoListByDeviceId error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+
+    /**
+     * 查询所有提醒
+     */
+    @RequestMapping("/selectAllTodoList")
+    @ResponseBody
+    public CommonResponseDto selectAllTodoList() {
+        CommonResponseDto ret = new CommonResponseDto();
+        try {
+            ret.setData(todoService.selectAllTodoList());
+            ret.setCode(myconst.SUCCESS);
+        } catch (Exception e) {
+            log.error("TodoController selectAllTodoList error");
+            ret.setCode(myconst.EXCEPTION);
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 }

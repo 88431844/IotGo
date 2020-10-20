@@ -210,4 +210,23 @@
       orderSum = #{ordersum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+    <select id="selectAllTodoList" resultType="fun.iotgo.dto.TodoDto">
+        select
+        id,
+        title,
+        url,
+        starttime as startTime,
+        endtime as endTime,
+        iscycle as isCycle,
+        cycletime as cycleTime,
+        isdone as isDone,
+        belonglistid as belongListId,
+        deviceid as deviceId,
+        ordersum as orderSum,
+        content
+        from todo
+    </select>
+
 </mapper>
