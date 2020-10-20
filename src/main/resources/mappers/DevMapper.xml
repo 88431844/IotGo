@@ -160,5 +160,6 @@
         devtype t,
         `user` u,
         devstatus ds
+        group by id
     </select>
 </mapper>

@@ -195,7 +195,7 @@ public class DevController {
     public CommonResponseDto selectAllDev() {
         CommonResponseDto ret = new CommonResponseDto();
         try {
-            devService.selectAllDev();
+            ret.setData(devService.selectAllDev());
             ret.setCode(myconst.SUCCESS);
         } catch (Exception e) {
             log.error("DevController selectAllDev error");
