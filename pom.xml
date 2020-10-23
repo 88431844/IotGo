@@ -30,6 +30,12 @@
         <mqtt-client.version>1.12</mqtt-client.version>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
         <dependency>
@@ -125,7 +131,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -138,5 +143,30 @@
             </plugin>
         </plugins>
     </build>
+
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.springframework.boot</groupId>-->
+    <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
+
+    <!--<build>-->
+    <!--    <plugins>-->
+    <!--        <plugin>-->
+    <!--            <groupId>org.springframework.boot</groupId>-->
+    <!--            <artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--            <version>${spring.boot.version}</version>-->
+    <!--            <configuration>-->
+    <!--                <mainClass>fun.iotgo.Application</mainClass>-->
+    <!--                <layout>JAR</layout>-->
+    <!--                &lt;!&ndash;构建完整可执行程序，可以直接运行&ndash;&gt;-->
+    <!--                <executable>true</executable>-->
+    <!--            </configuration>-->
+    <!--        </plugin>-->
+    <!--    </plugins>-->
+    <!--</build>-->
 
 </project>
