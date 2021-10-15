@@ -127,6 +127,7 @@
     </dependencies>
 
     <build>
+        <finalName>IotGo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -143,30 +144,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--    <build>-->
-    <!--        <plugins>-->
-    <!--            <plugin>-->
-    <!--                <groupId>org.springframework.boot</groupId>-->
-    <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-    <!--            </plugin>-->
-    <!--        </plugins>-->
-    <!--    </build>-->
-
-    <!--<build>-->
-    <!--    <plugins>-->
-    <!--        <plugin>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-maven-plugin</artifactId>-->
-    <!--            <version>${spring.boot.version}</version>-->
-    <!--            <configuration>-->
-    <!--                <mainClass>fun.iotgo.Application</mainClass>-->
-    <!--                <layout>JAR</layout>-->
-    <!--                &lt;!&ndash;构建完整可执行程序，可以直接运行&ndash;&gt;-->
-    <!--                <executable>true</executable>-->
-    <!--            </configuration>-->
-    <!--        </plugin>-->
-    <!--    </plugins>-->
-    <!--</build>-->
 
 </project>
