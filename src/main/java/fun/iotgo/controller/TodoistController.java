@@ -4,7 +4,6 @@ import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.util.myconst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -19,11 +18,12 @@ public class TodoistController {
      * 获取项目列表
      */
     @RequestMapping("/getProjects")
-    @ResponseBody
     public CommonResponseDto getProjects() {
         CommonResponseDto ret = new CommonResponseDto();
         try {
-            System.out.println("");
+            log.info("TodoistController getProjects");
+            ret.setData("TodoistController getProjects");
+            return ret;
         } catch (Exception e) {
             log.error("TodoistController getProjects error");
             ret.setCode(myconst.EXCEPTION);
