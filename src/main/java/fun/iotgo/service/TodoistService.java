@@ -1,7 +1,7 @@
 package fun.iotgo.service;
 
 import fun.iotgo.dto.todoist.GetProjectByNameReq;
-import fun.iotgo.dto.todoist.GetTaskListByProjectNameReq;
+import fun.iotgo.dto.todoist.GetTaskListByProjectIdReq;
 import fun.iotgo.dto.todoist.ProjectDto;
 import fun.iotgo.dto.todoist.TaskDto;
 
@@ -11,5 +11,5 @@ public interface TodoistService {
 
     ProjectDto getProjectByName(GetProjectByNameReq req);
 
-    List<TaskDto> getTaskListByProjectName(GetTaskListByProjectNameReq req);
+    List<TaskDto> getTaskListByProjectId(GetTaskListByProjectIdReq req);
 }

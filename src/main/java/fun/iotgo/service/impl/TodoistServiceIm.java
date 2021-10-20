@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import fun.iotgo.dto.todoist.GetProjectByNameReq;
-import fun.iotgo.dto.todoist.GetTaskListByProjectNameReq;
+import fun.iotgo.dto.todoist.GetTaskListByProjectIdReq;
 import fun.iotgo.dto.todoist.ProjectDto;
 import fun.iotgo.dto.todoist.TaskDto;
 import fun.iotgo.myconst.TodoistConst;
@@ -35,10 +35,11 @@ public class TodoistServiceIm implements TodoistService {
     }
 
     @Override
-    public List<TaskDto> getTaskListByProjectName(GetTaskListByProjectNameReq req) {
+    public List<TaskDto> getTaskListByProjectId(GetTaskListByProjectIdReq req) {
         List<TaskDto> list = new ArrayList<>();
         String result = HttpUtil.httpReq(TodoistConst.TASK_URL, req.getAuthorization());
-        String projectId = getProjectIdByProjectName(req.getProjectName(), req.getAuthorization());
+//        String projectId = getProjectIdByProjectName(req.getProjectName(), req.getAuthorization());
+        String projectId = req.getProjectId();
         if (!StringUtils.isEmpty(projectId)) {
             if (!StringUtils.isEmpty(result)) {
                 JSONArray jsonArray = JSONArray.parseArray(result);

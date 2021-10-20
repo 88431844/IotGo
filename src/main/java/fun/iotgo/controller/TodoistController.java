@@ -2,7 +2,7 @@ package fun.iotgo.controller;
 
 import fun.iotgo.dto.CommonResponseDto;
 import fun.iotgo.dto.todoist.GetProjectByNameReq;
-import fun.iotgo.dto.todoist.GetTaskListByProjectNameReq;
+import fun.iotgo.dto.todoist.GetTaskListByProjectIdReq;
 import fun.iotgo.service.TodoistService;
 import fun.iotgo.util.myconst;
 import lombok.extern.slf4j.Slf4j;
@@ -62,16 +62,16 @@ public class TodoistController {
     /**
      * 通过项目名称获取任务列表
      */
-    @RequestMapping("/getTaskListByProjectName")
-    public CommonResponseDto getTaskListByProjectName(GetTaskListByProjectNameReq req) {
+    @RequestMapping("/getTaskListByProjectId")
+    public CommonResponseDto getTaskListByProjectId(GetTaskListByProjectIdReq req) {
         CommonResponseDto ret = new CommonResponseDto();
         try {
-            log.info("TodoistController getTaskListByProjectName");
-            ret.setData(todoistService.getTaskListByProjectName(req));
+            log.info("TodoistController getTaskListByProjectId");
+            ret.setData(todoistService.getTaskListByProjectId(req));
             ret.setCode(myconst.SUCCESS);
             return ret;
         } catch (Exception e) {
-            log.error("TodoistController getTaskListByProjectName error");
+            log.error("TodoistController getTaskListByProjectId error");
             ret.setCode(myconst.EXCEPTION);
             e.printStackTrace();
         }
