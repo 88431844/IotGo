@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class CommonResponseDto<T> {
     private String code;
-    private String msg;
+    private String msg = "";
     private T data;
     private String responseTime = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
 
