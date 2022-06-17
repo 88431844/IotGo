@@ -25,7 +25,7 @@
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
         <mybatis-generator-maven-plugin.version>1.4.0</mybatis-generator-maven-plugin.version>
         <lombok.version>1.18.12</lombok.version>
-        <fastjson.version>1.2.73</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <jackson-databind.version>2.11.2</jackson-databind.version>
         <mqtt-client.version>1.12</mqtt-client.version>
     </properties>
